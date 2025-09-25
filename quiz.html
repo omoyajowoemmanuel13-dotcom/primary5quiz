@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Quiz — Primary 5 Maths</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header class="quiz-header">
+      <div>
+        <h1 id="topicTitle">Topic</h1>
+        <p id="topicSubtitle" class="muted">60 questions — 20:00</p>
+      </div>
+      <div class="timer-block">
+        <div class="timer-label">Time left</div>
+        <div id="timerDisplay" class="timer-large">20:00</div>
+        <div class="muted small">N = next • P = prev • S = submit</div>
+      </div>
+    </header>
+
+    <section class="card" id="quizCard" style="display:none">
+      <div id="progress" class="progress">Question 1 / 60</div>
+      <div id="questionText" class="question"></div>
+      <ul id="optionsList" class="options"></ul>
+
+      <div class="controls">
+        <button id="prevBtn" class="btn">Previous (P)</button>
+        <button id="nextBtn" class="btn">Next (N)</button>
+        <button id="submitBtn" class="btn danger">Submit (S)</button>
+      </div>
+      <div class="muted small" style="margin-top:8px">Answers saved automatically. Score appears only on the results page.</div>
+    </section>
+
+    <section id="startCard" class="card start-card">
+      <p id="startInfo">Press <strong>Start Topic</strong> to begin the timer and start the quiz.</p>
+      <div class="row">
+        <button id="startTopicBtn" class="btn primary">Start Topic</button>
+        <button id="backHomeBtn" class="btn">Back</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

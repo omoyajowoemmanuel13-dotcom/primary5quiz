@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Primary 5 Maths — Quiz</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header class="topbar">
+      <h1>Primary 5 Maths Quiz</h1>
+      <p class="subtitle">5 topics • 60 questions each • 20 minutes per topic</p>
+    </header>
+
+    <section class="card">
+      <h2>How it works</h2>
+      <ul>
+        <li>Choose a topic and click <strong>Start</strong>.</li>
+        <li>Each topic has <strong>60 questions</strong> and a <strong>20:00</strong> timer.</li>
+        <li>Use keyboard: <strong>N</strong> = next, <strong>P</strong> = previous, <strong>S</strong> = submit.</li>
+        <li>Options are shuffled. Score is shown on a separate results page after submit or timeout.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Select a topic</h2>
+      <div class="row">
+        <select id="topicSelect" class="select"></select>
+        <button id="startBtn" class="btn primary">Start</button>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <small>Designed for Primary 5 — clean layout, keyboard controls, and timed quizzes.</small>
+    </footer>
+  </main>
+
+  <script>
+    const topics = [
+      { id: 'fractions', name: 'Fractions' },
+      { id: 'decimals', name: 'Decimals' },
+      { id: 'geometry', name: 'Geometry' },
+      { id: 'measurement', name: 'Measurement' },
+      { id: 'wordproblems', name: 'Word Problems' }
+    ];
+
+    const sel = document.getElementById('topicSelect');
+
+    // Populate dropdown
+    topics.forEach((t,i)=> {
+      const o = document.createElement('option');
+      o.value = t.id;
+      o.textContent = `${i+1}. ${t.name}`;
+      sel.appendChild(o);
+    });
+
+    // Start button click
+    document.getElementById('startBtn').addEventListener('click', () => {
+      const topicId = sel.value;
+      window.location.href = `quiz.html?topic=${encodeURIComponent(topicId)}`;
+    });
+  </script>
+</body>
+</html>

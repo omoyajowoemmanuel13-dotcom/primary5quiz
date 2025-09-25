@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Quiz Result</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <section class="card">
+      <h1>Score</h1>
+      <div id="scoreArea" class="score-large">- / 60</div>
+      <div id="infoArea" class="muted" style="margin-top:8px"></div>
+      <div style="margin-top:16px">
+        <button id="againBtn" class="btn primary">Take another topic</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const raw = sessionStorage.getItem('p5quiz_result');
+    if (!raw) {
+      document.getElementById('scoreArea').textContent = 'No result';
+      document.getElementById('infoArea').textContent = 'No quiz result found. Go back and take a quiz.';
+    } else {
+      try {
+        const r = JSON.parse(raw);
+        document.getElementById('scoreArea').textContent = `${r.correct} / ${r.total}`;
+        const pct = Math.round((r.correct / r.total) * 100);
+        document.getElementById('infoArea').innerHTML =
+          `Topic: ${escapeHtml(r.topicName)} <br> Percentage: ${pct}% <br> Started: ${new Date(r.startedAt).toLocaleString()} <br> Finished: ${new Date(r.finishedAt).toLocaleString()}`;
+        sessionStorage.removeItem('p5quiz_progress');
+        sessionStorage.removeItem('p5quiz_result');
+      } catch (e) {
+        document.getElementById('scoreArea').textContent = 'Result error';
+        document.getElementById('infoArea').textContent = 'There was an error reading the result.';
+      }
+    }
+    document.getElementById('againBtn').addEventListener('click', ()=> window.location.href = 'index.html');
+    function escapeHtml(s){ return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+  </script>
+</body>
+</html>
